@@ -3,6 +3,9 @@ from urllib.request import urlopen as uReq
 from bs4 import BeautifulSoup as soup
 
 app = Flask(__name__)
+
+baseUrl = 'http://nepalstock.com.np'
+
 @app.route('/')
 def index():
         return """
@@ -18,7 +21,7 @@ def index():
 
 @app.route('/live/')
 def live_market():
-        url_link = 'http://nepalstock.com.np/main/todays_price/?_limit=300'
+        url_link = baseUrl + '/main/todays_price/?_limit=300'
         uClient = uReq(url_link)
         page_html = uClient.read()
         uClient.close()
@@ -53,7 +56,7 @@ def floorsheet():
         symbol = request.args.get('symbol', default="")
         buyer = request.args.get('buyer', default="")
         seller = request.args.get('seller', default="")
-        url_link = 'http://nepalstock.com.np/main/floorsheet/?contract-no='+contract+'&stock-symbol='+symbol+'&buyer='+buyer+'&seller='+seller+'&_limit=500'
+        url_link = baseUrl + '/main/floorsheet/?contract-no='+contract+'&stock-symbol='+symbol+'&buyer='+buyer+'&seller='+seller+'&_limit=500'
         uClient = uReq(url_link)
         page_html = uClient.read()
         uClient.close()
@@ -83,7 +86,7 @@ def floorsheet():
 
 @app.route('/brokers/')
 def brokers():
-        url_link = 'http://nepalstock.com.np/brokers/?_limit=500'
+        url_link = baseUrl + '/brokers/?_limit=500'
         uClient = uReq(url_link)
         page_html = uClient.read()
         uClient.close()
@@ -102,7 +105,7 @@ def brokers():
 
 @app.route('/indices/')
 def indices():
-        url_link = 'http://nepalstock.com.np'
+        url_link = baseUrl + ''
         uClient = uReq(url_link)
         page_html = uClient.read()
         uClient.close()
@@ -137,7 +140,7 @@ def indices():
 
 @app.route('/gainers/')
 def gainers():
-        url_link = 'http://nepalstock.com.np/gainers'
+        url_link = baseUrl + '/gainers'
         uClient = uReq(url_link)
         page_html = uClient.read()
         uClient.close()
@@ -159,7 +162,7 @@ def gainers():
 
 @app.route('/losers/')
 def losers():
-        url_link = 'http://nepalstock.com.np/losers'
+        url_link = baseUrl + '/losers'
         uClient = uReq(url_link)
         page_html = uClient.read()
         uClient.close()
