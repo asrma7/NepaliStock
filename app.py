@@ -125,7 +125,8 @@ def indices():
                         "Index": row[0].text.strip(),
                         "Current": row[1].text.strip(),
                         "Points Change": row[2].text.strip(),
-                        "% Change": row[3].text.strip()
+                        "% Change": row[3].text.strip(),
+                        "Change": "dec" if row[3]['class'][0] == 'red' else "inc"
                 })
         subindexList = []
         for subindex in subindices:
@@ -134,7 +135,8 @@ def indices():
                         "Sub-Indices": row[0].text.strip(),
                         "Current": row[1].text.strip(),
                         "Points Change": row[2].text.strip(),
-                        "% Change": row[3].text.strip()
+                        "% Change": row[3].text.strip(),
+                        "Change": "dec" if row[3]['class'][0] == 'red' else "inc"
                 })
         return jsonify({"indices": indexList, "sub-indices": subindexList})
 
